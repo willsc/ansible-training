@@ -1,0 +1,9 @@
+---
+- name: Enable internet services
+  hosts: serverb.lab.example.com
+  become: yes
+
+  tasks: 
+  - name: latest version of the required packages installed.
+
+

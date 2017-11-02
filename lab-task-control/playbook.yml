@@ -1,0 +1,12 @@
+---
+- hosts: webservers
+  tasks:
+    - block:
+      - include: install_packages.yml
+        vars:
+          memory: 256
+          web_package: httpd
+          ssl_package: mod_ssl
+          web_service: httpd
+
+

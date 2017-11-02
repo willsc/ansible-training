@@ -1,0 +1,11 @@
+---
+# Handlers file for my hosts
+
+- name: restart httpd
+  service:
+    name: httpd
+    state: restarted
+
+
+
+

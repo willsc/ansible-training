@@ -1,0 +1,10 @@
+--- 
+
+- name: Play No1
+  hosts: all
+  tasks: 
+    - name: Install ftpd
+      yum: 
+        name: vsftpd
+        state: latest
+    - name:     

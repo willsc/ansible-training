@@ -1,0 +1,44 @@
+---
+- hosts: databases
+  vars:
+    web_packages: httpd
+    db_packages: mariadb-server
+    db_service: mariadb
+
+  tasks:
+    - name: Check local time
+      command: date
+      register: command_result
+    - name: Print local time
+      debug:
+        var: command_result["stdout"]
+
+
+
+
+    - block:
+        - name: Install {{ web_packages }} package
+          yum:
+            name: "{{ web_packages }}"
+            state: latest
+          failed_when: web_packages == "httpd"
+
+
+      rescue:
+        - name: Install {{ db_packages }} package
+          yum:
+            name: "{{ db_packages }}"
+            state: latest
+      always:
+        - name: start {{ db_sevice }} service
+          service:
+            name: "{{ db_service }}"
+            state: started
+    
+
+    - name: Install {{ db_package }} package
+      yum:
+         name: "{{ db_packages }}"
+         state: latest
+
+         
